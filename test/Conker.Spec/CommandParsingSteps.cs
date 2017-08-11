@@ -18,8 +18,8 @@ namespace Conker.Spec
             _commands.Add(commandName, () => _invokedCommands.Add(commandName));
         }
         
-        [When(@"I invoke my application with the args ""(.*)""")]
-        public void WhenIInvokeMyApplicationWithTheArgs(string args)
+        [When(@"I run my application with the args ""(.*)""")]
+        public void WhenIRunMyApplicationWithTheArgs(string args)
         {
             _commands[args]();
         }
