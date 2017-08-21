@@ -80,11 +80,45 @@ namespace Conker.Spec
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line 4
- testRunner.Given("I have a command \"test\" which doesn\'t take arguments", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a handler for the command \"test\" which doesn\'t take arguments", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
  testRunner.When("I run my application with the args \"test\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 6
  testRunner.Then("the \"test\" command is invoked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.FactAttribute(DisplayName="Invoke a command with a string argument")]
+        [Xunit.TraitAttribute("FeatureTitle", "Command Parsing")]
+        [Xunit.TraitAttribute("Description", "Invoke a command with a string argument")]
+        public virtual void InvokeACommandWithAStringArgument()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invoke a command with a string argument", ((string[])(null)));
+#line 8
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type"});
+            table1.AddRow(new string[] {
+                        "name",
+                        "String"});
+#line 9
+ testRunner.Given("I have a handler for the command \"test\" which takes the following arguments", ((string)(null)), table1, "Given ");
+#line 12
+ testRunner.When("I run my application with the args \"test FooBar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type",
+                        "value"});
+            table2.AddRow(new string[] {
+                        "name",
+                        "String",
+                        "FooBar"});
+#line 13
+ testRunner.Then("the \"test\" command is invoked with the following arguments", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
