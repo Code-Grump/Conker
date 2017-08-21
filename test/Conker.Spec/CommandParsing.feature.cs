@@ -123,6 +123,40 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
+        [Xunit.FactAttribute(DisplayName="Invoke a command with an integer argument")]
+        [Xunit.TraitAttribute("FeatureTitle", "Command Parsing")]
+        [Xunit.TraitAttribute("Description", "Invoke a command with an integer argument")]
+        public virtual void InvokeACommandWithAnIntegerArgument()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invoke a command with an integer argument", ((string[])(null)));
+#line 17
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type"});
+            table3.AddRow(new string[] {
+                        "size",
+                        "Int32"});
+#line 18
+ testRunner.Given("I have a handler for the command \"test\" which takes the following arguments", ((string)(null)), table3, "Given ");
+#line 21
+ testRunner.When("I run my application with the args \"test 12345\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type",
+                        "value"});
+            table4.AddRow(new string[] {
+                        "size",
+                        "Int32",
+                        "12345"});
+#line 22
+ testRunner.Then("the \"test\" command is invoked with the following arguments", ((string)(null)), table4, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : System.IDisposable

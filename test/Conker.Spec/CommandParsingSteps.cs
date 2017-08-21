@@ -63,11 +63,17 @@ namespace Conker.Spec
 
             var handler = _commands[values[0]];
 
-            var parameters = new object[values.Length - 1];
+            var arguments = new object[values.Length - 1];
 
-            Array.Copy(values, 1, parameters, 0, values.Length - 1);
+            // Convert argument strings to expected types.
+            var parameters = handler.method.GetParameters();
 
-            handler.method.Invoke(handler.target, parameters);
+            for (var i = 0; i < parameters.Length; i++)
+            {
+                arguments[i] = Convert.ChangeType(values[i + 1], parameters[i].ParameterType);
+            }
+
+            handler.method.Invoke(handler.target, arguments);
         }
         
         [Then(@"the ""(.*)"" command is invoked")]
@@ -136,6 +142,14 @@ namespace Conker.Spec
             for (var i = 0; i < parameters.Length; i++)
             {
                 handlerBodyGenerator.Emit(OpCodes.Ldarg, i+1);
+
+                var parameter = parameters[i];
+
+                if (!parameter.Type.IsClass)
+                {
+                    // Box the argument.
+                    handlerBodyGenerator.Emit(OpCodes.Box, parameter.Type);
+                }
             }
 
             // Call the protected "Invoke" method to save the arguments.
@@ -166,14 +180,31 @@ namespace Conker.Spec
             _invokedCommandName.Should().Be(commandName);
 
             var arguments = table.Rows.Select(row => new
-            {
-                Name = row["name"],
-                Type = row["type"],
-                Value = row["value"]
-            });
+                {
+                    Name = row["name"],
+                    Type = row["type"],
+                    Value = row["value"]
+                })
+                .Select(p => new
+                {
+                    p.Name,
+                    FullTypeName = p.Type.Contains(Type.Delimiter) ? p.Type : "System." + p.Type,
+                    p.Value
+                })
+                .Select(p => new
+                {
+                    p.Name,
+                    Type = Type.GetType(p.FullTypeName, true),
+                    Value = (object) p.Value
+                })
+                .Select(p => new
+                {
+                    p.Name,
+                    p.Type,
+                    Value = Convert.ChangeType(p.Value, p.Type)
+                });
 
             _commandHandler.CapturedArguments.Should().BeEquivalentTo(arguments.Select(arg => arg.Value));
         }
-
     }
 }

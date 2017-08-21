@@ -13,3 +13,12 @@ Scenario: Invoke a command with a string argument
 	Then the "test" command is invoked with the following arguments
 	| name | type   | value  |
 	| name | String | FooBar |
+
+Scenario: Invoke a command with an integer argument
+	Given I have a handler for the command "test" which takes the following arguments
+	| name | type   |
+	| size | Int32 |
+	When I run my application with the args "test 12345"
+	Then the "test" command is invoked with the following arguments
+	| name | type  | value |
+	| size | Int32 | 12345 |
