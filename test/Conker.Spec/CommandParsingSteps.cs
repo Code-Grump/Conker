@@ -27,11 +27,13 @@ namespace Conker.Spec
             protected void Invoke(object arg)
             {
                 CapturedArguments = new[] {arg};
+                _callback();
             }
 
             protected void Invoke(object arg1, object arg2)
             {
                 CapturedArguments = new[] {arg1, arg2};
+                _callback();
             }
         }
 
@@ -133,7 +135,7 @@ namespace Conker.Spec
             // Load all declared arguments onto the stack.
             for (var i = 0; i < parameters.Length; i++)
             {
-                handlerBodyGenerator.Emit(OpCodes.Ldarg, i);
+                handlerBodyGenerator.Emit(OpCodes.Ldarg, i+1);
             }
 
             // Call the protected "Invoke" method to save the arguments.
