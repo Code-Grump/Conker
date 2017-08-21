@@ -157,6 +157,40 @@ this.ScenarioSetup(scenarioInfo);
             this.ScenarioCleanup();
         }
         
+        [Xunit.FactAttribute(DisplayName="Invoke a command with a decimal argument")]
+        [Xunit.TraitAttribute("FeatureTitle", "Command Parsing")]
+        [Xunit.TraitAttribute("Description", "Invoke a command with a decimal argument")]
+        public virtual void InvokeACommandWithADecimalArgument()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invoke a command with a decimal argument", ((string[])(null)));
+#line 26
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type"});
+            table5.AddRow(new string[] {
+                        "size",
+                        "Double"});
+#line 27
+ testRunner.Given("I have a handler for the command \"test\" which takes the following arguments", ((string)(null)), table5, "Given ");
+#line 30
+ testRunner.When("I run my application with the args \"test 12345.6789\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type",
+                        "value"});
+            table6.AddRow(new string[] {
+                        "size",
+                        "Double",
+                        "12345.6789"});
+#line 31
+ testRunner.Then("the \"test\" command is invoked with the following arguments", ((string)(null)), table6, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
         [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
         [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
         public class FixtureData : System.IDisposable

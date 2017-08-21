@@ -22,3 +22,12 @@ Scenario: Invoke a command with an integer argument
 	Then the "test" command is invoked with the following arguments
 	| name | type  | value |
 	| size | Int32 | 12345 |
+
+Scenario: Invoke a command with a decimal argument
+	Given I have a handler for the command "test" which takes the following arguments
+	| name | type   |
+	| size | Double |
+	When I run my application with the args "test 12345.6789"
+	Then the "test" command is invoked with the following arguments
+	| name | type   | value      |
+	| size | Double | 12345.6789 |
