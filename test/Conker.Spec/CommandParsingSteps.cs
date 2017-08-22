@@ -37,14 +37,17 @@ namespace Conker.Spec
             }
         }
 
-        private readonly Dictionary<string, (MethodInfo method, object target)> _commands 
-            = new Dictionary<string, (MethodInfo method, object target)>();
-
         private string _invokedCommandName;
 
-        private CommandHandler _commandHandler;
+        private CommandParsingSteps.CommandHandler _commandHandler;
         
         private static readonly Regex Whitespace = new Regex("\\s+");
+        private readonly Application _application;
+
+        public CommandParsingSteps()
+        {
+            _application = new Application();
+        }
 
         [Given(@"I have a handler for the command ""(.*)"" which doesn't take arguments")]
         public void GivenIHaveAHandlerForTheCommandWhichDoesnTTakeArguments(string commandName)
@@ -53,29 +56,17 @@ namespace Conker.Spec
 
             Action cmd = Command;
 
-            _commands.Add(commandName, (cmd.Method, cmd.Target));
+            _application.AddCommand(commandName, cmd);
         }
-        
+
         [When(@"I run my application with the args ""(.*)""")]
         public void WhenIRunMyApplicationWithTheArgs(string args)
         {
             var values = Whitespace.Split(args);
 
-            var handler = _commands[values[0]];
-
-            var arguments = new object[values.Length - 1];
-
-            // Convert argument strings to expected types.
-            var parameters = handler.method.GetParameters();
-
-            for (var i = 0; i < parameters.Length; i++)
-            {
-                arguments[i] = Convert.ChangeType(values[i + 1], parameters[i].ParameterType);
-            }
-
-            handler.method.Invoke(handler.target, arguments);
+            _application.Execute(values);
         }
-        
+
         [Then(@"the ""(.*)"" command is invoked")]
         public void ThenTheCommandIsInvoked(string commandName)
         {
@@ -110,7 +101,7 @@ namespace Conker.Spec
             var typeBuilder = moduleBuilder.DefineType(
                 "DynamicCommandHandler",
                 TypeAttributes.Public | TypeAttributes.Class,
-                typeof(CommandHandler));
+                typeof(CommandParsingSteps.CommandHandler));
 
             var constructorBuilder = typeBuilder.DefineConstructor(
                 MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.RTSpecialName,
@@ -119,7 +110,7 @@ namespace Conker.Spec
 
             var constructorBodyGenerator = constructorBuilder.GetILGenerator();
 
-            var baseCtor = typeof(CommandHandler).GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance).Single();
+            var baseCtor = typeof(CommandParsingSteps.CommandHandler).GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance).Single();
             constructorBodyGenerator.Emit(OpCodes.Ldarg_0);
             constructorBodyGenerator.Emit(OpCodes.Ldarg_1);
             constructorBodyGenerator.Emit(OpCodes.Call, baseCtor);
@@ -153,7 +144,7 @@ namespace Conker.Spec
             }
 
             // Call the protected "Invoke" method to save the arguments.
-            var captureMethod = typeof(CommandHandler)
+            var captureMethod = typeof(CommandParsingSteps.CommandHandler)
                 .GetMethods(BindingFlags.Instance | BindingFlags.NonPublic)
                 .Where(method => method.Name == "Invoke")
                 .Single(method => method.GetParameters().Length == parameters.Length);
@@ -167,11 +158,11 @@ namespace Conker.Spec
 
             void Command() => _invokedCommandName = commandName;
 
-            _commandHandler = (CommandHandler)Activator.CreateInstance(handlerType, (Action)Command);
+            _commandHandler = (CommandParsingSteps.CommandHandler)Activator.CreateInstance(handlerType, (Action)Command);
 
             var handlerMethod = handlerType.GetMethod("Handle");
 
-            _commands.Add(commandName, (handlerMethod, _commandHandler));
+            _application.AddCommand(commandName, handlerMethod, _commandHandler);
         }
 
         [Then(@"the ""(.*)"" command is invoked with the following arguments")]
