@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
+using System.Text;
 
 namespace Conker
 {
@@ -9,31 +11,82 @@ namespace Conker
         private readonly Dictionary<string, (MethodInfo method, object target)> _commands
             = new Dictionary<string, (MethodInfo method, object target)>();
 
-        public void AddCommand(string commandName, Action cmd)
+        private (MethodInfo method, object target)? _handler;
+
+        public string Name { get; set; }
+
+        public TextWriter OutputWriter { get; set; }
+
+        public void AddVerb(string verb, Action cmd)
         {
-            _commands.Add(commandName, (cmd.Method, cmd.Target));
+            _commands.Add(verb, (cmd.Method, cmd.Target));
         }
 
-        public void AddCommand(string commandName, MethodInfo handlerMethod, object target)
+        public void AddVerb(string verb, MethodInfo handlerMethod, object target)
         {
-            _commands.Add(commandName, (handlerMethod, target));
+            _commands.Add(verb, (handlerMethod, target));
         }
 
         public void Execute(IReadOnlyList<string> args)
         {
-            var handler = _commands[args[0]];
+            if (_handler != null)
+            {
+                var helpRequested = args.Count == 1 && args[0] == "--help";
 
-            var arguments = new object[args.Count - 1];
+                if (helpRequested)
+                {
+                    var handler = _handler.Value;
+
+                    var parameters = handler.method.GetParameters();
+
+                    var usage = new StringBuilder();
+
+                    usage.Append("usage: ");
+                    usage.Append(Name);
+                    
+                    foreach (var parameter in parameters)
+                    {
+                        usage.Append(" <");
+                        usage.Append(parameter.Name);
+                        usage.Append(">");
+                    }
+
+                    OutputWriter.WriteLine(usage);
+                    OutputWriter.WriteLine();
+                    OutputWriter.Flush();
+                }
+
+                InvokeHandler(_handler.Value, args);
+            }
+            else
+            {
+                InvokeHandler(_commands[args[0]], args, 1, args.Count - 1);
+            }
+        }
+
+        private void InvokeHandler((MethodInfo method, object target) handler, IReadOnlyList<string> args)
+        {
+            InvokeHandler(handler, args, 0, args.Count);
+        }
+
+        private void InvokeHandler((MethodInfo method, object target) handler, IReadOnlyList<string> args, int index, int count)
+        {
+            var arguments = new object[count];
 
             // Convert argument strings to expected types.
             var parameters = handler.method.GetParameters();
 
             for (var i = 0; i < parameters.Length; i++)
             {
-                arguments[i] = Convert.ChangeType(args[i + 1], parameters[i].ParameterType);
+                arguments[i] = Convert.ChangeType(args[i + index], parameters[i].ParameterType);
             }
 
             handler.method.Invoke(handler.target, arguments);
+        }
+
+        public void SetHandler(MethodInfo handlerMethod, object target)
+        {
+            _handler = (handlerMethod, target);
         }
     }
 }

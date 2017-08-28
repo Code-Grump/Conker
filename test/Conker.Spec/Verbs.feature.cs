@@ -17,39 +17,37 @@ namespace Conker.Spec
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class CommandParsingFeature : Xunit.IClassFixture<CommandParsingFeature.FixtureData>, System.IDisposable
+    [NUnit.Framework.TestFixtureAttribute()]
+    [NUnit.Framework.DescriptionAttribute("Verbs")]
+    public partial class VerbsFeature
     {
         
-        private static TechTalk.SpecFlow.ITestRunner testRunner;
+        private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
-        
-#line 1 "CommandParsing.feature"
+#line 1 "Verbs.feature"
 #line hidden
         
-        public CommandParsingFeature(CommandParsingFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
-        {
-            this._testOutputHelper = testOutputHelper;
-            this.TestInitialize();
-        }
-        
-        public static void FeatureSetup()
+        [NUnit.Framework.OneTimeSetUpAttribute()]
+        public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Command Parsing", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Verbs", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
-        public static void FeatureTearDown()
+        [NUnit.Framework.OneTimeTearDownAttribute()]
+        public virtual void FeatureTearDown()
         {
             testRunner.OnFeatureEnd();
             testRunner = null;
         }
         
+        [NUnit.Framework.SetUpAttribute()]
         public virtual void TestInitialize()
         {
         }
         
+        [NUnit.Framework.TearDownAttribute()]
         public virtual void ScenarioTearDown()
         {
             testRunner.OnScenarioEnd();
@@ -58,7 +56,6 @@ namespace Conker.Spec
         public virtual void ScenarioSetup(TechTalk.SpecFlow.ScenarioInfo scenarioInfo)
         {
             testRunner.OnScenarioStart(scenarioInfo);
-            testRunner.ScenarioContext.ScenarioContainer.RegisterInstanceAs<Xunit.Abstractions.ITestOutputHelper>(_testOutputHelper);
         }
         
         public virtual void ScenarioCleanup()
@@ -66,35 +63,28 @@ namespace Conker.Spec
             testRunner.CollectScenarioErrors();
         }
         
-        void System.IDisposable.Dispose()
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Invoke a verb without arguments")]
+        public virtual void InvokeAVerbWithoutArguments()
         {
-            this.ScenarioTearDown();
-        }
-        
-        [Xunit.FactAttribute(DisplayName="Invoke a command without arguments")]
-        [Xunit.TraitAttribute("FeatureTitle", "Command Parsing")]
-        [Xunit.TraitAttribute("Description", "Invoke a command without arguments")]
-        public virtual void InvokeACommandWithoutArguments()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invoke a command without arguments", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invoke a verb without arguments", ((string[])(null)));
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line 4
- testRunner.Given("I have a handler for the command \"test\" which doesn\'t take arguments", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have a handler for the verb \"test\" which doesn\'t take arguments", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 5
  testRunner.When("I run my application with the args \"test\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 6
- testRunner.Then("the \"test\" command is invoked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the \"test\" handler is invoked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [Xunit.FactAttribute(DisplayName="Invoke a command with a string argument")]
-        [Xunit.TraitAttribute("FeatureTitle", "Command Parsing")]
-        [Xunit.TraitAttribute("Description", "Invoke a command with a string argument")]
-        public virtual void InvokeACommandWithAStringArgument()
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Invoke a verb with a string argument")]
+        public virtual void InvokeAVerbWithAStringArgument()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invoke a command with a string argument", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invoke a verb with a string argument", ((string[])(null)));
 #line 8
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -105,7 +95,7 @@ this.ScenarioSetup(scenarioInfo);
                         "name",
                         "String"});
 #line 9
- testRunner.Given("I have a handler for the command \"test\" which takes the following arguments", ((string)(null)), table1, "Given ");
+ testRunner.Given("I have a handler for the verb \"test\" which takes the following arguments", ((string)(null)), table1, "Given ");
 #line 12
  testRunner.When("I run my application with the args \"test FooBar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -118,17 +108,16 @@ this.ScenarioSetup(scenarioInfo);
                         "String",
                         "FooBar"});
 #line 13
- testRunner.Then("the \"test\" command is invoked with the following arguments", ((string)(null)), table2, "Then ");
+ testRunner.Then("the \"test\" handler is invoked with the following arguments", ((string)(null)), table2, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [Xunit.FactAttribute(DisplayName="Invoke a command with an integer argument")]
-        [Xunit.TraitAttribute("FeatureTitle", "Command Parsing")]
-        [Xunit.TraitAttribute("Description", "Invoke a command with an integer argument")]
-        public virtual void InvokeACommandWithAnIntegerArgument()
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Invoke a verb with an integer argument")]
+        public virtual void InvokeAVerbWithAnIntegerArgument()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invoke a command with an integer argument", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invoke a verb with an integer argument", ((string[])(null)));
 #line 17
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -139,7 +128,7 @@ this.ScenarioSetup(scenarioInfo);
                         "size",
                         "Int32"});
 #line 18
- testRunner.Given("I have a handler for the command \"test\" which takes the following arguments", ((string)(null)), table3, "Given ");
+ testRunner.Given("I have a handler for the verb \"test\" which takes the following arguments", ((string)(null)), table3, "Given ");
 #line 21
  testRunner.When("I run my application with the args \"test 12345\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -152,17 +141,16 @@ this.ScenarioSetup(scenarioInfo);
                         "Int32",
                         "12345"});
 #line 22
- testRunner.Then("the \"test\" command is invoked with the following arguments", ((string)(null)), table4, "Then ");
+ testRunner.Then("the \"test\" handler is invoked with the following arguments", ((string)(null)), table4, "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
-        [Xunit.FactAttribute(DisplayName="Invoke a command with a decimal argument")]
-        [Xunit.TraitAttribute("FeatureTitle", "Command Parsing")]
-        [Xunit.TraitAttribute("Description", "Invoke a command with a decimal argument")]
-        public virtual void InvokeACommandWithADecimalArgument()
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Invoke a verb with a decimal argument")]
+        public virtual void InvokeAVerbWithADecimalArgument()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invoke a command with a decimal argument", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invoke a verb with a decimal argument", ((string[])(null)));
 #line 26
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -173,7 +161,7 @@ this.ScenarioSetup(scenarioInfo);
                         "size",
                         "Double"});
 #line 27
- testRunner.Given("I have a handler for the command \"test\" which takes the following arguments", ((string)(null)), table5, "Given ");
+ testRunner.Given("I have a handler for the verb \"test\" which takes the following arguments", ((string)(null)), table5, "Given ");
 #line 30
  testRunner.When("I run my application with the args \"test 12345.6789\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -186,25 +174,9 @@ this.ScenarioSetup(scenarioInfo);
                         "Double",
                         "12345.6789"});
 #line 31
- testRunner.Then("the \"test\" command is invoked with the following arguments", ((string)(null)), table6, "Then ");
+ testRunner.Then("the \"test\" handler is invoked with the following arguments", ((string)(null)), table6, "Then ");
 #line hidden
             this.ScenarioCleanup();
-        }
-        
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
-        [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-        public class FixtureData : System.IDisposable
-        {
-            
-            public FixtureData()
-            {
-                CommandParsingFeature.FeatureSetup();
-            }
-            
-            void System.IDisposable.Dispose()
-            {
-                CommandParsingFeature.FeatureTearDown();
-            }
         }
     }
 }
