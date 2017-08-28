@@ -13,9 +13,9 @@ namespace Conker
 
         private (MethodInfo method, object target)? _handler;
 
-        public string Name { get; set; }
+        public string Name { get; set; } = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
 
-        public TextWriter OutputWriter { get; set; }
+        public TextWriter OutputWriter { get; set; } = Console.Out;
 
         public void AddVerb(string verb, Action cmd)
         {
