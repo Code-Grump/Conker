@@ -76,12 +76,12 @@ namespace Conker.Spec
         private Handler _handler;
         
         private static readonly Regex Whitespace = new Regex("\\s+");
-        private readonly Application _application;
+        private readonly CommandLineApplication _application;
         private readonly StringWriter _outputWriter = new StringWriter();
 
         public Steps()
         {
-            _application = new Application
+            _application = new CommandLineApplication
             {
                 OutputWriter = _outputWriter
             };

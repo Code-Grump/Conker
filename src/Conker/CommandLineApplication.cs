@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Conker
 {
-    public class Application
+    public class CommandLineApplication
     {
         private readonly Dictionary<string, (MethodInfo method, object target)> _commands
             = new Dictionary<string, (MethodInfo method, object target)>();
