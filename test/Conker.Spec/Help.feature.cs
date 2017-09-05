@@ -64,10 +64,10 @@ namespace Conker.Spec
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get help for application without verbs")]
-        public virtual void GetHelpForApplicationWithoutVerbs()
+        [NUnit.Framework.DescriptionAttribute("Get help by default for application without verbs")]
+        public virtual void GetHelpByDefaultForApplicationWithoutVerbs()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get help for application without verbs", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get help by default for application without verbs", ((string[])(null)));
 #line 3
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -80,9 +80,97 @@ this.ScenarioSetup(scenarioInfo);
 #line 4
  testRunner.Given("I have an application \"time\" which takes the following arguments", ((string)(null)), table1, "Given ");
 #line 7
- testRunner.When("I run my application with the args \"--help\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I run my application with no args", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
  testRunner.Then("the application prints usage information \"time <name>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Get help for application without verbs")]
+        public virtual void GetHelpForApplicationWithoutVerbs()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get help for application without verbs", ((string[])(null)));
+#line 10
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type"});
+            table2.AddRow(new string[] {
+                        "name",
+                        "String"});
+#line 11
+ testRunner.Given("I have an application \"time\" which takes the following arguments", ((string)(null)), table2, "Given ");
+#line 14
+ testRunner.When("I run my application with the args \"--help\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 15
+ testRunner.Then("the application prints usage information \"time <name>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Get help by default for an application with verbs")]
+        public virtual void GetHelpByDefaultForAnApplicationWithVerbs()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get help by default for an application with verbs", ((string[])(null)));
+#line 17
+this.ScenarioSetup(scenarioInfo);
+#line 18
+ testRunner.Given("my application is called \"time\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 19
+ testRunner.And("I have a handler for the verb \"get\" which doesn\'t take arguments", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type"});
+            table3.AddRow(new string[] {
+                        "now",
+                        "Int32"});
+#line 20
+ testRunner.Given("I have a handler for the verb \"set\" which takes the following arguments", ((string)(null)), table3, "Given ");
+#line 23
+ testRunner.When("I run my application with no args", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name"});
+            table4.AddRow(new string[] {
+                        "get"});
+            table4.AddRow(new string[] {
+                        "set"});
+#line 24
+ testRunner.Then("the application prints usage information \"time <command> [<args>]\" with the follo" +
+                    "wing commands", ((string)(null)), table4, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Get help for a verb")]
+        public virtual void GetHelpForAVerb()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get help for a verb", ((string[])(null)));
+#line 29
+this.ScenarioSetup(scenarioInfo);
+#line 30
+ testRunner.Given("my application is called \"time\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 31
+ testRunner.And("I have a handler for the verb \"get\" which doesn\'t take arguments", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type"});
+            table5.AddRow(new string[] {
+                        "now",
+                        "Int32"});
+#line 32
+ testRunner.Given("I have a handler for the verb \"set\" which takes the following arguments", ((string)(null)), table5, "Given ");
+#line 35
+ testRunner.When("I run my application with the args \"set --help\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 36
+ testRunner.Then("the application prints usage information \"time set <now>\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

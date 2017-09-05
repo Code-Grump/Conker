@@ -87,11 +87,16 @@ namespace Conker.Spec
             };
         }
 
+        [Given(@"my application is called ""(.*)""")]
+        public void GivenMyApplicationIsCalled(string name)
+        {
+            _application.Name = name;
+        }
+
         [Given(@"I have an application ""(.*)"" which takes the following arguments")]
         public void GivenIHaveAnApplicationWhichTakesTheFollowingArguments(string name, Table table)
         {
-            _application.Name = name;
-
+            GivenMyApplicationIsCalled(name);
             GivenIHaveAnApplicationWhichTakesTheFollowingArguments(table);
         }
 
@@ -254,6 +259,22 @@ namespace Conker.Spec
                 .Select(p => (p.Name, Type.GetType(p.FullTypeName, true)));
         }
 
+        [Then(@"the application prints usage information ""(.*)"" with the following commands")]
+        public void ThenTheApplicationPrintsUsageInformationWithTheFollowingCommands(string expectedUsage, Table table)
+        {
+            var commands = table.Rows.Select(row => new {Name = row["name"]});
+
+            var availableCommands = string.Join("", commands.Select(cmd => $"   {cmd.Name}\r\n"));
+
+            var formattedUsage 
+                = $"usage: {expectedUsage}\r\n"
+                + "\r\n"
+                + "The following commands are available:\r\n"
+                + $"{availableCommands}\r\n";
+
+            _outputWriter.ToString().Should().Be(formattedUsage);
+        }
+
         [Then(@"the ""(.*)"" handler is invoked with the following arguments")]
         public void ThenTheHandlerIsInvokedWithTheFollowingArguments(string commandName, Table table)
         {
@@ -262,6 +283,12 @@ namespace Conker.Spec
             var expectedArguments = GetExpectedArguments(table);
 
             _handler.CapturedArguments.Should().BeEquivalentTo(expectedArguments);
+        }
+
+        [When(@"I run my application with no args")]
+        public void WhenIRunMyApplicationWithNoArgs()
+        {
+            _application.Execute(new string[0]);
         }
 
         [Then(@"the application prints usage information ""(.*)""")]
