@@ -110,12 +110,7 @@ namespace Conker
             OutputWriter.Flush();
         }
 
-        private void InvokeHandler((MethodInfo method, object target) handler, IReadOnlyList<string> args)
-        {
-            InvokeHandler(handler, args, 0);
-        }
-
-        private void InvokeHandler((MethodInfo method, object target) handler, IReadOnlyList<string> args, int index)
+        private void InvokeHandler((MethodInfo method, object target) handler, IReadOnlyList<string> args, int index = 0)
         {
             // Convert argument strings to expected types.
             var parameters = handler.method.GetParameters();
