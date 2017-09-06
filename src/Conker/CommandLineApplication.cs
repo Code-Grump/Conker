@@ -48,7 +48,7 @@ namespace Conker
             }
             else
             {
-                InvokeHandler(_commands[args[0]], args, 1, args.Count - 1);
+                InvokeHandler(_commands[args[0]], args, 1);
             }
         }
 
@@ -112,15 +112,14 @@ namespace Conker
 
         private void InvokeHandler((MethodInfo method, object target) handler, IReadOnlyList<string> args)
         {
-            InvokeHandler(handler, args, 0, args.Count);
+            InvokeHandler(handler, args, 0);
         }
 
-        private void InvokeHandler((MethodInfo method, object target) handler, IReadOnlyList<string> args, int index, int count)
+        private void InvokeHandler((MethodInfo method, object target) handler, IReadOnlyList<string> args, int index)
         {
-            var arguments = new object[count];
-
             // Convert argument strings to expected types.
             var parameters = handler.method.GetParameters();
+            var arguments = new object[parameters.Length];
 
             for (var i = 0; i < parameters.Length; i++)
             {

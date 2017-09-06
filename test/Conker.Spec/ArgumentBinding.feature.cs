@@ -128,6 +128,39 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Too many parameters")]
+        public virtual void TooManyParameters()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Too many parameters", ((string[])(null)));
+#line 21
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type"});
+            table5.AddRow(new string[] {
+                        "id",
+                        "Int32"});
+#line 22
+ testRunner.Given("I have an application which takes the following arguments", ((string)(null)), table5, "Given ");
+#line 25
+ testRunner.When("I run my application with the args \"12345 678910\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table6 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type",
+                        "value"});
+            table6.AddRow(new string[] {
+                        "id",
+                        "Int32",
+                        "12345"});
+#line 26
+ testRunner.Then("the application handler is invoked with the values", ((string)(null)), table6, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
