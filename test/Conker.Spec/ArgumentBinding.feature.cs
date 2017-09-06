@@ -130,10 +130,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Too many parameters")]
-        public virtual void TooManyParameters()
+        [NUnit.Framework.DescriptionAttribute("Too many arguments")]
+        public virtual void TooManyArguments()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Too many parameters", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Too many arguments", ((string[])(null)));
 #line 21
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -163,10 +163,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Not enough parameters")]
-        public virtual void NotEnoughParameters()
+        [NUnit.Framework.DescriptionAttribute("Too few arguments")]
+        public virtual void TooFewArguments()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Not enough parameters", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Too few arguments", ((string[])(null)));
 #line 30
 this.ScenarioSetup(scenarioInfo);
 #line hidden

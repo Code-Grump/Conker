@@ -178,6 +178,66 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Invoke a verb with too many arguments")]
+        public virtual void InvokeAVerbWithTooManyArguments()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invoke a verb with too many arguments", ((string[])(null)));
+#line 35
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type"});
+            table7.AddRow(new string[] {
+                        "size",
+                        "Int32"});
+#line 36
+ testRunner.Given("I have a handler for the verb \"test\" which takes the following arguments", ((string)(null)), table7, "Given ");
+#line 39
+ testRunner.When("I run my application with the args \"test 12345 678910\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type",
+                        "value"});
+            table8.AddRow(new string[] {
+                        "size",
+                        "Int32",
+                        "12345"});
+#line 40
+ testRunner.Then("the \"test\" handler is invoked with the following arguments", ((string)(null)), table8, "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Invoke a verb with too few arguments")]
+        public virtual void InvokeAVerbWithTooFewArguments()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invoke a verb with too few arguments", ((string[])(null)));
+#line 44
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type"});
+            table9.AddRow(new string[] {
+                        "size",
+                        "Int32"});
+            table9.AddRow(new string[] {
+                        "count",
+                        "Int32"});
+#line 45
+ testRunner.Given("I have a handler for the verb \"test\" which takes the following arguments", ((string)(null)), table9, "Given ");
+#line 49
+ testRunner.When("I run my application with the args \"test 12345\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 50
+ testRunner.Then("the application prints the error \"missing parameter \'count\'\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

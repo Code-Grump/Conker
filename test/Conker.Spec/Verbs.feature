@@ -31,3 +31,20 @@ Scenario: Invoke a verb with a decimal argument
 	Then the "test" handler is invoked with the following arguments
 	| name | type   | value      |
 	| size | Double | 12345.6789 |
+
+Scenario: Invoke a verb with too many arguments
+	Given I have a handler for the verb "test" which takes the following arguments
+	| name | type   |
+	| size | Int32 |
+	When I run my application with the args "test 12345 678910"
+	Then the "test" handler is invoked with the following arguments
+	| name | type  | value |
+	| size | Int32 | 12345 |
+
+Scenario: Invoke a verb with too few arguments
+	Given I have a handler for the verb "test" which takes the following arguments
+	| name  | type  |
+	| size  | Int32 |
+	| count | Int32 |
+	When I run my application with the args "test 12345"
+	Then the application prints the error "missing parameter 'count'"

@@ -18,7 +18,7 @@ Scenario: Bind integer parameter
 	| name | type  | value |
 	| id   | Int32 | 12345 |
 
-Scenario: Too many parameters
+Scenario: Too many arguments
 	Given I have an application which takes the following arguments
 	| name | type  |
 	| id   | Int32 |
@@ -27,7 +27,7 @@ Scenario: Too many parameters
 	| name | type  | value |
 	| id   | Int32 | 12345 |
 
-Scenario: Not enough parameters
+Scenario: Too few arguments
 	Given I have an application which takes the following arguments
 	| name  | type  |
 	| id    | Int32 |
