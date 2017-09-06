@@ -320,5 +320,11 @@ namespace Conker.Spec
                 })
                 .Select(p => new Argument(p.Name, Convert.ChangeType(p.Value, p.Type)));
         }
+
+        [Then(@"the application prints the error ""(.*)""")]
+        public void ThenTheApplicationPrintsTheError(string message)
+        {
+            _outputWriter.ToString().Should().Be("error: " + message + "\r\n\r\n");
+        }
     }
 }

@@ -161,6 +161,33 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Not enough parameters")]
+        public virtual void NotEnoughParameters()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Not enough parameters", ((string[])(null)));
+#line 30
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table7 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type"});
+            table7.AddRow(new string[] {
+                        "id",
+                        "Int32"});
+            table7.AddRow(new string[] {
+                        "count",
+                        "Int32"});
+#line 31
+ testRunner.Given("I have an application which takes the following arguments", ((string)(null)), table7, "Given ");
+#line 35
+ testRunner.When("I run my application with the args \"12345\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 36
+ testRunner.Then("the application prints the error \"missing parameter \'count\'\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

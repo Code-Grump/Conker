@@ -116,8 +116,20 @@ namespace Conker
             var parameters = handler.method.GetParameters();
             var arguments = new object[parameters.Length];
 
+            var lastArgIndex = (args.Count - index) - 1;
+
             for (var i = 0; i < parameters.Length; i++)
             {
+                if (i > lastArgIndex)
+                {
+                    OutputWriter.Write("error: missing parameter '");
+                    OutputWriter.Write(parameters[i].Name);
+                    OutputWriter.WriteLine("'");
+                    OutputWriter.WriteLine();
+                    OutputWriter.Flush();
+                    return;
+                }
+
                 arguments[i] = Convert.ChangeType(args[i + index], parameters[i].ParameterType);
             }
 
