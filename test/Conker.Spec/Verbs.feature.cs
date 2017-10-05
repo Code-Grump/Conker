@@ -95,7 +95,7 @@ this.ScenarioSetup(scenarioInfo);
                         "name",
                         "String"});
 #line 9
- testRunner.Given("I have a handler for the verb \"test\" which takes the following arguments", ((string)(null)), table1, "Given ");
+ testRunner.Given("I have a handler for the verb \"test\" which requires the following arguments", ((string)(null)), table1, "Given ");
 #line 12
  testRunner.When("I run my application with the args \"test FooBar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -128,7 +128,7 @@ this.ScenarioSetup(scenarioInfo);
                         "size",
                         "Int32"});
 #line 18
- testRunner.Given("I have a handler for the verb \"test\" which takes the following arguments", ((string)(null)), table3, "Given ");
+ testRunner.Given("I have a handler for the verb \"test\" which requires the following arguments", ((string)(null)), table3, "Given ");
 #line 21
  testRunner.When("I run my application with the args \"test 12345\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -161,7 +161,7 @@ this.ScenarioSetup(scenarioInfo);
                         "size",
                         "Double"});
 #line 27
- testRunner.Given("I have a handler for the verb \"test\" which takes the following arguments", ((string)(null)), table5, "Given ");
+ testRunner.Given("I have a handler for the verb \"test\" which requires the following arguments", ((string)(null)), table5, "Given ");
 #line 30
  testRunner.When("I run my application with the args \"test 12345.6789\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -194,7 +194,7 @@ this.ScenarioSetup(scenarioInfo);
                         "size",
                         "Int32"});
 #line 36
- testRunner.Given("I have a handler for the verb \"test\" which takes the following arguments", ((string)(null)), table7, "Given ");
+ testRunner.Given("I have a handler for the verb \"test\" which requires the following arguments", ((string)(null)), table7, "Given ");
 #line 39
  testRunner.When("I run my application with the args \"test 12345 678910\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -230,7 +230,7 @@ this.ScenarioSetup(scenarioInfo);
                         "count",
                         "Int32"});
 #line 45
- testRunner.Given("I have a handler for the verb \"test\" which takes the following arguments", ((string)(null)), table9, "Given ");
+ testRunner.Given("I have a handler for the verb \"test\" which requires the following arguments", ((string)(null)), table9, "Given ");
 #line 49
  testRunner.When("I run my application with the args \"test 12345\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 50

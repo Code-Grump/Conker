@@ -130,10 +130,26 @@ namespace Conker
                     return;
                 }
 
-                arguments[i] = Convert.ChangeType(args[i + index], parameters[i].ParameterType);
+                if (!TryBindParameter(parameters[i], args[i + index], out arguments[i]))
+                    return;
             }
 
             handler.method.Invoke(handler.target, arguments);
+        }
+
+        private bool TryBindParameter(ParameterInfo parameter, string s, out object value)
+        {
+            if (parameter.ParameterType == typeof(int))
+            {
+                if (int.TryParse(s, out var result))
+                {
+                    value = result;
+                    return true;
+                }
+            }
+
+            value = default(object);
+            return false;
         }
 
         public void SetHandler(MethodInfo handlerMethod, object target)

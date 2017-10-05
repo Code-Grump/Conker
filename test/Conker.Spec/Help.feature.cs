@@ -78,7 +78,7 @@ this.ScenarioSetup(scenarioInfo);
                         "name",
                         "String"});
 #line 4
- testRunner.Given("I have an application \"time\" which takes the following arguments", ((string)(null)), table1, "Given ");
+ testRunner.Given("I have an application \"time\" which requires the following arguments", ((string)(null)), table1, "Given ");
 #line 7
  testRunner.When("I run my application with no args", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
@@ -102,7 +102,7 @@ this.ScenarioSetup(scenarioInfo);
                         "name",
                         "String"});
 #line 11
- testRunner.Given("I have an application \"time\" which takes the following arguments", ((string)(null)), table2, "Given ");
+ testRunner.Given("I have an application \"time\" which requires the following arguments", ((string)(null)), table2, "Given ");
 #line 14
  testRunner.When("I run my application with the args \"--help\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15
@@ -130,7 +130,7 @@ this.ScenarioSetup(scenarioInfo);
                         "now",
                         "Int32"});
 #line 20
- testRunner.Given("I have a handler for the verb \"set\" which takes the following arguments", ((string)(null)), table3, "Given ");
+ testRunner.Given("I have a handler for the verb \"set\" which requires the following arguments", ((string)(null)), table3, "Given ");
 #line 23
  testRunner.When("I run my application with no args", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -166,7 +166,7 @@ this.ScenarioSetup(scenarioInfo);
                         "now",
                         "Int32"});
 #line 32
- testRunner.Given("I have a handler for the verb \"set\" which takes the following arguments", ((string)(null)), table5, "Given ");
+ testRunner.Given("I have a handler for the verb \"set\" which requires the following arguments", ((string)(null)), table5, "Given ");
 #line 35
  testRunner.When("I run my application with the args \"set --help\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 36

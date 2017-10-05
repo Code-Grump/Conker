@@ -93,15 +93,15 @@ namespace Conker.Spec
             _application.Name = name;
         }
 
-        [Given(@"I have an application ""(.*)"" which takes the following arguments")]
-        public void GivenIHaveAnApplicationWhichTakesTheFollowingArguments(string name, Table table)
+        [Given(@"I have an application ""(.*)"" which requires the following arguments")]
+        public void GivenIHaveAnApplicationWhichRequiresTheFollowingArguments(string name, Table table)
         {
             GivenMyApplicationIsCalled(name);
-            GivenIHaveAnApplicationWhichTakesTheFollowingArguments(table);
+            GivenIHaveAnApplicationWhichRequiresTheFollowingArguments(table);
         }
 
-        [Given(@"I have an application which takes the following arguments")]
-        public void GivenIHaveAnApplicationWhichTakesTheFollowingArguments(Table table)
+        [Given(@"I have an application which requires the following arguments")]
+        public void GivenIHaveAnApplicationWhichRequiresTheFollowingArguments(Table table)
         {
             var parameters = GetParameters(table).ToArray();
 
@@ -146,8 +146,8 @@ namespace Conker.Spec
             _invokedVerb.Should().Be(commandName);
         }
 
-        [Given(@"I have a handler for the verb ""(.*)"" which takes the following arguments")]
-        public void GivenIHaveAHandlerForTheVerbWhichTakesTheFollowingArguments(string commandName, Table table)
+        [Given(@"I have a handler for the verb ""(.*)"" which requires the following arguments")]
+        public void GivenIHaveAHandlerForTheVerbWhichRequiresTheFollowingArguments(string commandName, Table table)
         {
             var parameters = GetParameters(table).ToArray();
 
@@ -324,7 +324,7 @@ namespace Conker.Spec
         [Then(@"the application prints the error ""(.*)""")]
         public void ThenTheApplicationPrintsTheError(string message)
         {
-            _outputWriter.ToString().Should().Be("error: " + message + "\r\n\r\n");
+            _outputWriter.ToString().Should().Be($"error: {message}\r\n\r\n");
         }
     }
 }

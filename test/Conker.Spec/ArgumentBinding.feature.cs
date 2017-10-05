@@ -78,7 +78,7 @@ this.ScenarioSetup(scenarioInfo);
                         "name",
                         "String"});
 #line 4
- testRunner.Given("I have an application which takes the following arguments", ((string)(null)), table1, "Given ");
+ testRunner.Given("I have an application which requires the following arguments", ((string)(null)), table1, "Given ");
 #line 7
  testRunner.When("I run my application with the args \"FooBar\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -111,7 +111,7 @@ this.ScenarioSetup(scenarioInfo);
                         "id",
                         "Int32"});
 #line 13
- testRunner.Given("I have an application which takes the following arguments", ((string)(null)), table3, "Given ");
+ testRunner.Given("I have an application which requires the following arguments", ((string)(null)), table3, "Given ");
 #line 16
  testRunner.When("I run my application with the args \"12345\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -144,7 +144,7 @@ this.ScenarioSetup(scenarioInfo);
                         "id",
                         "Int32"});
 #line 22
- testRunner.Given("I have an application which takes the following arguments", ((string)(null)), table5, "Given ");
+ testRunner.Given("I have an application which requires the following arguments", ((string)(null)), table5, "Given ");
 #line 25
  testRunner.When("I run my application with the args \"12345 678910\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
@@ -180,11 +180,86 @@ this.ScenarioSetup(scenarioInfo);
                         "count",
                         "Int32"});
 #line 31
- testRunner.Given("I have an application which takes the following arguments", ((string)(null)), table7, "Given ");
+ testRunner.Given("I have an application which requires the following arguments", ((string)(null)), table7, "Given ");
 #line 35
  testRunner.When("I run my application with the args \"12345\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 36
- testRunner.Then("the application prints the error \"missing parameter \'count\'\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the application prints the error \"missing required parameter \'count\'\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Try bind non-numeric to Int32")]
+        public virtual void TryBindNon_NumericToInt32()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try bind non-numeric to Int32", ((string[])(null)));
+#line 38
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table8 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type"});
+            table8.AddRow(new string[] {
+                        "id",
+                        "Int32"});
+#line 39
+ testRunner.Given("I have an application which requires the following arguments", ((string)(null)), table8, "Given ");
+#line 42
+ testRunner.When("I run my application with the args \"potato\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 43
+ testRunner.Then("the application prints the error \"cannot use \'potato\' as the \'id\' parameter; coul" +
+                    "d not convert to a System.Int32\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Try bind decimal to Int32")]
+        public virtual void TryBindDecimalToInt32()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try bind decimal to Int32", ((string[])(null)));
+#line 45
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table9 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type"});
+            table9.AddRow(new string[] {
+                        "id",
+                        "Int32"});
+#line 46
+ testRunner.Given("I have an application which requires the following arguments", ((string)(null)), table9, "Given ");
+#line 49
+ testRunner.When("I run my application with the args \"123.456\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 50
+ testRunner.Then("the application prints the error \"cannot use \'123.456\' as the \'id\' parameter; cou" +
+                    "ld not convert to a System.Int32\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Try bind non-numeric to Double")]
+        public virtual void TryBindNon_NumericToDouble()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Try bind non-numeric to Double", ((string[])(null)));
+#line 52
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table10 = new TechTalk.SpecFlow.Table(new string[] {
+                        "name",
+                        "type"});
+            table10.AddRow(new string[] {
+                        "size",
+                        "Double"});
+#line 53
+ testRunner.Given("I have an application which requires the following arguments", ((string)(null)), table10, "Given ");
+#line 56
+ testRunner.When("I run my application with the args \"potato\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 57
+ testRunner.Then("the application prints the error \"cannot use \'potato\' as the \'size\' parameter; co" +
+                    "uld not convert to a System.Double\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

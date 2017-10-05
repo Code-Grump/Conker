@@ -6,7 +6,7 @@ Scenario: Invoke a verb without arguments
 	Then the "test" handler is invoked
 
 Scenario: Invoke a verb with a string argument
-	Given I have a handler for the verb "test" which takes the following arguments
+	Given I have a handler for the verb "test" which requires the following arguments
 	| name | type   |
 	| name | String |
 	When I run my application with the args "test FooBar"
@@ -15,7 +15,7 @@ Scenario: Invoke a verb with a string argument
 	| name | String | FooBar |
 
 Scenario: Invoke a verb with an integer argument
-	Given I have a handler for the verb "test" which takes the following arguments
+	Given I have a handler for the verb "test" which requires the following arguments
 	| name | type   |
 	| size | Int32 |
 	When I run my application with the args "test 12345"
@@ -24,7 +24,7 @@ Scenario: Invoke a verb with an integer argument
 	| size | Int32 | 12345 |
 
 Scenario: Invoke a verb with a decimal argument
-	Given I have a handler for the verb "test" which takes the following arguments
+	Given I have a handler for the verb "test" which requires the following arguments
 	| name | type   |
 	| size | Double |
 	When I run my application with the args "test 12345.6789"
@@ -33,7 +33,7 @@ Scenario: Invoke a verb with a decimal argument
 	| size | Double | 12345.6789 |
 
 Scenario: Invoke a verb with too many arguments
-	Given I have a handler for the verb "test" which takes the following arguments
+	Given I have a handler for the verb "test" which requires the following arguments
 	| name | type   |
 	| size | Int32 |
 	When I run my application with the args "test 12345 678910"
@@ -42,7 +42,7 @@ Scenario: Invoke a verb with too many arguments
 	| size | Int32 | 12345 |
 
 Scenario: Invoke a verb with too few arguments
-	Given I have a handler for the verb "test" which takes the following arguments
+	Given I have a handler for the verb "test" which requires the following arguments
 	| name  | type  |
 	| size  | Int32 |
 	| count | Int32 |
