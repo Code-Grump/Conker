@@ -115,7 +115,7 @@ namespace Conker.Spec
         [Then(@"the application handler is invoked with the values")]
         public void ThenTheApplicationHandlerIsInvokedWithTheValues(Table table)
         {
-            _handler.Invoked.Should().BeTrue();
+            _handler.Invoked.Should().BeTrue(because: "the application handler should have been invoked");
 
             var expectedArguments = GetExpectedArguments(table);
 

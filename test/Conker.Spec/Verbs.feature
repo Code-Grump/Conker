@@ -47,4 +47,4 @@ Scenario: Invoke a verb with too few arguments
 	| size  | Int32 |
 	| count | Int32 |
 	When I run my application with the args "test 12345"
-	Then the application prints the error "missing parameter 'count'"
+	Then the application prints the error "missing required parameter 'count'"

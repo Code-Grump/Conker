@@ -209,7 +209,7 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("I run my application with the args \"potato\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 43
  testRunner.Then("the application prints the error \"cannot use \'potato\' as the \'id\' parameter; coul" +
-                    "d not convert to a System.Int32\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                    "d not convert to System.Int32\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -234,7 +234,7 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("I run my application with the args \"123.456\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 50
  testRunner.Then("the application prints the error \"cannot use \'123.456\' as the \'id\' parameter; cou" +
-                    "ld not convert to a System.Int32\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                    "ld not convert to System.Int32\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -259,7 +259,7 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("I run my application with the args \"potato\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 57
  testRunner.Then("the application prints the error \"cannot use \'potato\' as the \'size\' parameter; co" +
-                    "uld not convert to a System.Double\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+                    "uld not convert to System.Double\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

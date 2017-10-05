@@ -122,7 +122,7 @@ namespace Conker
             {
                 if (i > lastArgIndex)
                 {
-                    OutputWriter.Write("error: missing parameter '");
+                    OutputWriter.Write("error: missing required parameter '");
                     OutputWriter.Write(parameters[i].Name);
                     OutputWriter.WriteLine("'");
                     OutputWriter.WriteLine();
@@ -139,17 +139,27 @@ namespace Conker
 
         private bool TryBindParameter(ParameterInfo parameter, string s, out object value)
         {
-            if (parameter.ParameterType == typeof(int))
+            if (parameter.ParameterType == typeof(string))
             {
-                if (int.TryParse(s, out var result))
-                {
-                    value = result;
-                    return true;
-                }
+                value = s;
+                return true;
             }
 
-            value = default(object);
-            return false;
+            try
+            {
+                value = Convert.ChangeType(s, parameter.ParameterType);
+                return true;
+            }
+            catch
+            {
+                OutputWriter.Write($"error: cannot use '{s}' as the '{parameter.Name}' parameter; ");
+                OutputWriter.WriteLine($"could not convert to {parameter.ParameterType.FullName}");
+                OutputWriter.WriteLine();
+                OutputWriter.Flush();
+
+                value = default(object);
+                return false;
+            }
         }
 
         public void SetHandler(MethodInfo handlerMethod, object target)
